@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:mt5_leeon1/features/news/domain/repo/news_repository.dart';
 
@@ -7,7 +8,7 @@ import '../model/news_article_model.dart';
 
 part 'news_event.dart';
 part 'news_state.dart';
-
+@injectable
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   NewsBloc({required this.newsRepository}) : super(const NewsInitial()) {
     on<NewsRequestedEvent>(_onNewsRequester);

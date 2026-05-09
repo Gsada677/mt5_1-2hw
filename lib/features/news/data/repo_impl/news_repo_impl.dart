@@ -1,9 +1,10 @@
+import 'package:injectable/injectable.dart';
 import 'package:mt5_leeon1/core/di/service_locator.dart';
 import 'package:mt5_leeon1/features/news/data/data_source/api/news_remote_data_source.dart';
 import 'package:mt5_leeon1/features/news/domain/bloc/news_bloc.dart';
 import 'package:mt5_leeon1/features/news/domain/model/news_article_model.dart';
 import 'package:mt5_leeon1/features/news/domain/repo/news_repository.dart';
-
+@LazySingleton(as: NewsRepository)
 class NewsRepoImpl implements NewsRepository{
   final NewsRemoteDataSource newsRemoteDataSource;
 
