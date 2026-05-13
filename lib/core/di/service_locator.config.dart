@@ -37,6 +37,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i386.NewsRemoteDataSource>(
       () => _i255.NewsRemoteDataSourceImpl(dio: gh<_i361.Dio>()),
     );
+
     gh.lazySingleton<_i866.NewsRepository>(
       () => _i374.NewsRepoImpl(
         newsRemoteDataSource: gh<_i386.NewsRemoteDataSource>(),
