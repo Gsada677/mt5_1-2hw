@@ -11,7 +11,7 @@ class NewsRepoImpl implements NewsRepository {
   @override
   Future<List<NewsArticleModel>> getNews() async {
     final result = await newsRemoteDataSource.getNews();
-    return result.map((entity) => entity.fromEntityToModel()).toList();
+    return result.map((entity) => entity.transformable()).toList();
   }
 
   @override
