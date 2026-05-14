@@ -44,7 +44,7 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.factory<_i845.NewsBloc>(
-      () => _i845.NewsBloc(newsRepository: gh<_i866.NewsRepository>()),
+      () => _i845.NewsBloc(getNewsUseCases: gh<_i866.NewsRepository>(),),
     );
     return this;
   }

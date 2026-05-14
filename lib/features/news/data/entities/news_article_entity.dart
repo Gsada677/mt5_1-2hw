@@ -1,8 +1,10 @@
 
 
+import 'package:mt5_leeon1/core/util/utils.dart';
+import 'package:mt5_leeon1/core/utils/transformable.dart';
 import 'package:mt5_leeon1/features/news/domain/model/news_article_model.dart';
 
-class NewsArticleEntity {
+class NewsArticleEntity with Transformable<NewsArticleModel>{
   final String? author;
   final String? title;
   final String? desc;
@@ -19,7 +21,7 @@ class NewsArticleEntity {
       desc: json['description']as String?,
       url: json['url']as String?,
       urlToImage: json['urlToImage']as String?,
-      publishedAt: json['publishedAt']as String?,
+      publishedAt: parceDate(json['publishedAt']as String?),
 content: json['content']as String?,
     );
   }
@@ -34,7 +36,10 @@ content: json['content']as String?,
         .map((e) => NewsArticleEntity.fromJson(e as Map<String, dynamic>))
         .toList();
   }
-  NewsArticleModel fromEntityToModel() {
+
+
+  @override
+  NewsArticleModel transformable() {
     return NewsArticleModel(
       author: author ?? 'Unknown author',
       title: title ?? 'No title',

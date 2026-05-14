@@ -4,8 +4,8 @@ import 'package:mt5_leeon1/core/di/service_locator.dart';
 import 'package:mt5_leeon1/features/news/domain/bloc/news_bloc.dart';
 import 'package:mt5_leeon1/features/news/ui/NewsTile.dart';
 
-class NewsPreferencesPage extends StatelessWidget {
-  const NewsPreferencesPage({super.key});
+class NewsFavoritePage extends StatelessWidget {
+  const NewsFavoritePage({super.key});
 
   @override
   Widget build(BuildContext context) {
