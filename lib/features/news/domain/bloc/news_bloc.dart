@@ -11,13 +11,13 @@ part 'news_event.dart';
 part 'news_state.dart';
 @injectable
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
-  NewsBloc({required this.getNewsUseCases,}) : super(const NewsInitial()) {
+  NewsBloc({required this.newsRepository,}) : super(const NewsInitial()) {
     on<NewsRequestedEvent>(_onNewsRequester);
     on<SearchNewsEvent>(_searchNews);
 
 
   }
-  final GetNewsUseCases getNewsUseCases;
+  final NewsRepository newsRepository;
   Future<void>_onNewsRequester(
       NewsRequestedEvent event,
       Emitter<NewsState>emit,
@@ -25,7 +25,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       )async{
     emit(const NewsLoading());
     try{
-      final news=await getNewsUseCases.call();
+      final news=await newsRepository.getNews();
       emit(NewsSuccess(news));
     }catch(error){
       emit(NewsFailure(error.toString()));
@@ -39,7 +39,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       )async{
     emit(const NewsLoading());
     try{
-      final news=await getNewsUseCases.search(event.NewsName);
+      final news=await newsRepository.searchNews(event.NewsName);
       emit(NewsSuccess(news));
     }catch(error){
       emit(NewsFailure(error.toString()));

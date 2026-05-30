@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mt5_leeon1/core/di/service_locator.config.dart';
@@ -16,13 +17,16 @@ Future<void> setupServiceLocator()async=>getIt.init();
 @module
 abstract class AppModule{
   @singleton
-  Talker get talker=>TalkerFlutter.init();
+  FlutterSecureStorage get flutterSecureStorage=>FlutterSecureStorage();
   @singleton
-  Dio dio(Talker talker){
+  Talker get talker=>TalkerFlutter.init();
+  @Named('newsDio')
+  @singleton
+  Dio newsDio(Talker talker){
   final dio=Dio(
       BaseOptions(baseUrl: 'https://newsapi.org/',
-        connectTimeout: const Duration(seconds: 10),
-        receiveTimeout: const Duration(seconds: 10),
+        connectTimeout: const Duration(seconds: 60),
+        receiveTimeout: const Duration(seconds: 60),
       )
   );
   dio.interceptors.add(TalkerDioLogger(talker: getIt<Talker>(),
@@ -38,5 +42,6 @@ abstract class AppModule{
   )));
   return dio;
 }
+
 }
 

@@ -32,7 +32,15 @@ class NewsDetailPage extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
-                    child: Image.network(urlToImage ?? '', height: 250, fit: BoxFit.cover,width: 200,),
+                    child: Image.network(urlToImage ?? '', height: 250, fit: BoxFit.cover,width: 200, errorBuilder: (context, error, stackTrace) {
+                      return  Center(
+                        child: Icon(
+                          Icons.article_outlined,
+                          color: Color(0xFF8E8E8E),
+                          size: 42,
+                        ),
+                      );
+                    },),
                   ),
                   const SizedBox(height: 20),
                   Text(title,

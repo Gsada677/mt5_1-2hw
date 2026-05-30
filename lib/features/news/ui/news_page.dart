@@ -59,6 +59,7 @@ class _NewsPageState extends State<NewsPage> {
                 activeColor: Colors.black,
                 color: Colors.white,
                 gap: 7,
+                padding: EdgeInsets.all(18),
                 backgroundColor: Color(0xFFF5F5F5),
                 selectedIndex: currentIndex,
                 onTabChange: (index){

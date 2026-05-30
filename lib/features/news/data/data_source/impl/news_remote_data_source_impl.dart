@@ -14,7 +14,7 @@ abstract final class _ApiPath {
 class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   final Dio dio;
 
-  const NewsRemoteDataSourceImpl({required this.dio});
+  const NewsRemoteDataSourceImpl({@Named('newsDio') required this.dio});
   @override
   Future<List<NewsArticleEntity>> getNews() async {
     final response = await dio.get(
