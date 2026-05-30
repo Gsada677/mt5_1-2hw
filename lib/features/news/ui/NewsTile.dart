@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mt5_leeon1/core/di/service_locator.dart';
 import 'package:mt5_leeon1/features/news/ui/NewsDetail.dart';
 
@@ -8,6 +9,7 @@ class NewsTile extends StatelessWidget {
   final String desc;
   final String urlToImage;
   final String publishedAt;
+
 
 
   const NewsTile({
@@ -40,6 +42,16 @@ class NewsTile extends StatelessWidget {
                 height: 250,
                 width: 200,
                 fit: BoxFit.cover,
+                errorBuilder: (context,error,stackTrace){
+                  return Container(
+                    height: 250,
+                    width: 200,
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: Icon(     Icons.article_outlined,
+                    color: Color(0xFF8E8E8E),size: 42,)
+                  );
+                },
               ),
             ),
 
@@ -55,6 +67,7 @@ class NewsTile extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
+
 
 
 
